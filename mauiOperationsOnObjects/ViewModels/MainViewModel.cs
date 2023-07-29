@@ -27,7 +27,22 @@ namespace mauiOperationsOnObjects.ViewModels
                 }
             }
         }
+        private ObservableCollection<newTable> listOfObjects;
+        public ObservableCollection<newTable> ListOfObjects
+        {
+            get { return listOfObjects; }
+            set
+            {
+                if (listOfObjects != value)
+                {
+                    listOfObjects = value;
+                    OnPropertyChanged("ListOfObjects");
+                }
+            }
+        }
+
         public ICommand CreateTableCommand { get; private set; }
+        
 
         private List<string> selectedTypesForColumns = new List<string>();
 
@@ -37,6 +52,7 @@ namespace mauiOperationsOnObjects.ViewModels
             instance = this;
             CreateTableCommand = new Command(() => CreateCollectionView((int)AmountOfColumns));
         }
+        public newTable newTable = new newTable();
         public void CreateCollectionView(int amountOfColumns)
         {
             List<string> types = new List<string>() { "String", "Int", "Double", "Datetime", "Bool"};
@@ -57,8 +73,8 @@ namespace mauiOperationsOnObjects.ViewModels
                 pickers[i].SelectedIndexChanged += (sender, args) =>
                 {
                     var selectedValue = pickers[index].SelectedItem?.ToString();
-                    //Trace.WriteLine($"ta: {pickers[index].ClassId}");
                     selectedTypesForColumns.Add(selectedValue);
+                    pickers[index].IsEnabled = false;
                 };
 
                 HomePage.instance.table.Children.Add(pickers[i]);
@@ -72,85 +88,94 @@ namespace mauiOperationsOnObjects.ViewModels
             btnCreate.Padding = new Thickness(5);
             btnCreate.Clicked += (sender, e) =>
             {
-                newTable newTable = new newTable();
-
+                
                 for (int i = 0; i < amountOfColumns; i++)
                 {
-                    Trace.WriteLine($"{i}. {selectedTypesForColumns[i]}");
-                    dynamic value;
-                    switch (selectedTypesForColumns[i])
+                    if (pickers[i].SelectedItem != null)
                     {
-                        case "String":
-                            {
-                                value = "";
-                                break;
-                            }
-                        case "Int":
-                            {
-                                value = 0;
-                                break;
-                            }
-                        case "Double":
-                            {
-                                value = 0.0;
-                                break;
-                            }
-                        case "Bool":
-                            {
-                                value = false;
-                                break;
-                            }
-                        case "Datetime":
-                            {
-                                value = DateTime.MinValue;
-                                break;
-                            }
-                        default:
-                            {
-                                Trace.WriteLine("Something is wrong with types.");
-                                value = null;
-                                break;
-                            }
+                        Trace.WriteLine($"{i}. {selectedTypesForColumns[i]}");
+                        dynamic value;
+                        switch (selectedTypesForColumns[i])
+                        {
+                            case "String":
+                                {
+                                    value = "";
+                                    break;
+                                }
+                            case "Int":
+                                {
+                                    value = 0;
+                                    break;
+                                }
+                            case "Double":
+                                {
+                                    value = 0.0;
+                                    break;
+                                }
+                            case "Bool":
+                                {
+                                    value = false;
+                                    break;
+                                }
+                            case "Datetime":
+                                {
+                                    value = DateTime.MinValue;
+                                    break;
+                                }
+                            default:
+                                {
+                                    Trace.WriteLine("Something is wrong with types.");
+                                    value = null;
+                                    break;
+                                }
+                        }
+                        switch (pickers[i].ClassId)
+                        {
+                            case "Picker1":
+                                {
+                                    newTable.Variable1 = value;
+                                    break;
+                                }
+                            case "Picker2":
+                                {
+                                    newTable.Variable2 = value;
+                                    break;
+                                }
+                            case "Picker3":
+                                {
+                                    newTable.Variable3 = value;
+                                    break;
+                                }
+                            case "Picker4":
+                                {
+                                    newTable.Variable4 = value;
+                                    break;
+                                }
+                            case "Picker5":
+                                {
+                                    newTable.Variable5 = value;
+                                    break;
+                                }
+                            default:
+                                {
+                                    Trace.WriteLine("Something is wrong with pickers.");
+                                    break;
+                                }
+                        }
+                        HomePage.instance.DisplayAlert("Created table.", $"The table has created. Please, go to Add Window.", "OK");
+                        btnCreate.IsEnabled = false;
                     }
-                    switch (pickers[i].ClassId)
+                    else
                     {
-                        case "Picker1":
-                            {
-                                newTable.Variable1 = value;
-                                break;
-                            }
-                        case "Picker2":
-                            {
-                                newTable.Variable2 = value;
-                                break;
-                            }
-                        case "Picker3":
-                            {
-                                newTable.Variable3 = value;
-                                break;
-                            }
-                        case "Picker4":
-                            {
-                                newTable.Variable4 = value;
-                                break;
-                            }
-                        case "Picker5":
-                            {
-                                newTable.Variable5 = value;
-                                break;
-                            }
-                        default:
-                            {
-                                Trace.WriteLine("Something is wrong with pickers.");
-                                break;
-                            }
+                        HomePage.instance.DisplayAlert("Wrong","You have not chosen types for columns.","OK");
+                        btnCreate.IsEnabled = true;
                     }
 
                 }
             };
             HomePage.instance.table.Children.Add(btnCreate);
         }
-
+        
 
 
         public event PropertyChangedEventHandler PropertyChanged;

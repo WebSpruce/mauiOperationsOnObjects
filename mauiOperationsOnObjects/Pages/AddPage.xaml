@@ -2,11 +2,41 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mauiOperationsOnObjects.Pages.AddPage"
-             Title="AddPage" Shell.NavBarIsVisible="False">
-    <VerticalStackLayout>
-        <Label 
-            Text="Add page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="AddPage" Shell.NavBarIsVisible="False" >
+    <StackLayout>
+        <StackLayout x:Name="entryLayout" HorizontalOptions="Center" VerticalOptions="Start">
+
+        </StackLayout>
+        <StackLayout>
+        <Frame Background="#23272a" CornerRadius="15" BorderColor="#99aab5" Margin="30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <CollectionView ItemsSource="{Binding ListOfObjectsAdd}" SelectionMode="Single" 
+                            Background="#23272a" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Always">
+                            <Grid Padding="20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Frame Background="#23272a">
+                                    <StackLayout Background="#23272a">
+                                        <Label Grid.Column="0" Text="{Binding Variable1}"></Label>
+                                        <Label Grid.Column="1" Text="{Binding Variable2}"></Label>
+                                        <Label Grid.Column="2" Text="{Binding Variable3}"></Label>
+                                        <Label Grid.Column="3" Text="{Binding Variable4}"></Label>
+                                        <Label Grid.Column="4" Text="{Binding Variable5}"></Label>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </ScrollView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Frame>
+        </StackLayout>
+    </StackLayout>
 </ContentPage>

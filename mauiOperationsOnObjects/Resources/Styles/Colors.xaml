@@ -17,6 +17,13 @@
     <Color x:Key="Gray600">#404040</Color>
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
+
+    <Color x:Key="DcGray0">#23272a</Color>
+    <Color x:Key="DcGray1">#2c2f33</Color>
+    <Color x:Key="DcLight0">#99aab5</Color>
+    <Color x:Key="DcLight1">#ffffff</Color>
+    <Color x:Key="DcLight2">#7289da</Color>
+    
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
@@ -30,6 +37,12 @@
     <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+
+    <SolidColorBrush x:Key="DcGray0Brush" Color="{StaticResource DcGray0}"/>
+    <SolidColorBrush x:Key="DcGray1Brush" Color="{StaticResource DcGray1}"/>
+    <SolidColorBrush x:Key="DcLight0Brush" Color="{StaticResource DcLight0}"/>
+    <SolidColorBrush x:Key="DcLight1Brush" Color="{StaticResource DcLight1}"/>
+    <SolidColorBrush x:Key="DcLight2Brush" Color="{StaticResource DcLight2}"/>
 
     <Color x:Key="Yellow100Accent">#F7B548</Color>
     <Color x:Key="Yellow200Accent">#FFD590</Color>
