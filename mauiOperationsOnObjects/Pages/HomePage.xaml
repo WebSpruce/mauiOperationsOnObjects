@@ -2,13 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mauiOperationsOnObjects.Pages.HomePage"
-             xmlns:sliders="clr-namespace:Syncfusion.Maui.Sliders;assembly=Syncfusion.Maui.Sliders"
+             xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
              Title="HomePage" Shell.NavBarIsVisible="False">
     <StackLayout>
-        <Label Text="{Binding Source={x:Reference sliderAmount}, Path=Value, StringFormat='Set amount of columns: {0:f0}'}" 
-               HorizontalOptions="Center" VerticalOptions="Start" FontSize="12"></Label>
-        <sliders:SfSlider x:Name="sliderAmount" Value="{Binding AmountOfColumns}" Minimum="1" Maximum="5" Interval="1" NumberFormat="$#" MinorTicksPerInterval="0" StepSize="1"
-                          ShowTicks="True" ShowLabels="False"  ShowDividers="False" Orientation="Horizontal" WidthRequest="300"></sliders:SfSlider>
+        <input:AdvancedSlider x:Name="sliderAmount" Value="{Binding AmountOfColumns}" MinValue="1" MaxValue="5" StepValue="1" DisplayMinMaxValue="False"
+                              Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start" WidthRequest="500" ValuePrefix="Amount:" ValueSuffix=" Columns" ThumbColor="#99aab5"></input:AdvancedSlider>
         <Button x:Name="btnCreateTable" Text="Set amount of columns" Command="{Binding CreateTableCommand}" HorizontalOptions="Center" VerticalOptions="Start" Padding="5"></Button>
         <StackLayout x:Name="tableLayout" HorizontalOptions="Center">
             

@@ -55,7 +55,7 @@ namespace mauiOperationsOnObjects.ViewModels
         public newTable newTable = new newTable();
         public void CreateCollectionView(int amountOfColumns)
         {
-            List<string> types = new List<string>() { "String", "Int", "Double", "Datetime", "Bool"};
+            List<string> types = new List<string>() { "String", "Double", "Datetime", "Bool"};
             Picker[] pickers = new Picker[amountOfColumns];
             for(int i=0; i<amountOfColumns; i++)
             {
@@ -100,11 +100,6 @@ namespace mauiOperationsOnObjects.ViewModels
                             case "String":
                                 {
                                     value = "";
-                                    break;
-                                }
-                            case "Int":
-                                {
-                                    value = 0;
                                     break;
                                 }
                             case "Double":

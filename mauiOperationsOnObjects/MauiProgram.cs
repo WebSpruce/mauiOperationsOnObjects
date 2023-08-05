@@ -3,8 +3,8 @@ using Microsoft.Maui.Hosting;
 using Microsoft.Maui.Controls.Compatibility;
 using Microsoft.Maui.Controls.Hosting;
 using Microsoft.Maui.Controls.Xaml;
-using Syncfusion.Maui.Core.Hosting;
 using Microsoft.Extensions.Logging;
+using InputKit.Handlers;
 
 namespace mauiOperationsOnObjects;
 
@@ -15,12 +15,16 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.ConfigureMauiHandlers(handlers =>
+			{
+				handlers.AddInputKitHandlers();
+			})
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			})
-			.ConfigureSyncfusionCore();
+			});
+			
 
 #if DEBUG
         builder.Logging.AddDebug();

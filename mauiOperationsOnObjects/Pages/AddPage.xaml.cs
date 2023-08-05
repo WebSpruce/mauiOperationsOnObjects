@@ -13,11 +13,4 @@ public partial class AddPage : ContentPage
         instance = this;
         BindingContext = new AddViewModel();
     }
-
-    //private void ContentPage_Loaded(object sender, EventArgs e)
-    //{
-    //    var viewModel = (AddViewModel)BindingContext;
-
-    //    viewModel.AddObjectToCollectionView();
-    //}
 }
