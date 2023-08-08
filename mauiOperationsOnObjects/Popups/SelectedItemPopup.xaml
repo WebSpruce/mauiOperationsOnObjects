@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="mauiOperationsOnObjects.Popups.SelectedItemPopup"
+            xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+           CanBeDismissedByTappingOutsideOfPopup="False"
+           HorizontalOptions="Center" VerticalOptions="Center">
+    <Frame Background="#23272a" CornerRadius="15" BorderColor="#99aab5">
+        <StackLayout x:Name="editArea" Background="#23272a">
+
+        </StackLayout>
+    </Frame>
+</mct:Popup>

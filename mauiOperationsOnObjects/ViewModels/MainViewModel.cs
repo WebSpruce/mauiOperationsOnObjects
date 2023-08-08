@@ -15,14 +15,27 @@ namespace mauiOperationsOnObjects.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private double amountOfColumns;
-        public double AmountOfColumns
+        private int amountOfColumns;
+        public int AmountOfColumns
         {
             get { return amountOfColumns; }
             set {
                 if (amountOfColumns != value)
                 {
                     amountOfColumns = value;
+                    OnPropertyChanged();
+                    lbSliderValue = $"Columns: {AmountOfColumns}";
+                }
+            }
+        }
+        private string _lbSliderValue;
+        public string lbSliderValue
+        {
+            get { return _lbSliderValue; }
+            set {
+                if (_lbSliderValue != value)
+                {
+                    _lbSliderValue = value;
                     OnPropertyChanged();
                 }
             }
@@ -55,7 +68,7 @@ namespace mauiOperationsOnObjects.ViewModels
         public newTable newTable = new newTable();
         public void CreateCollectionView(int amountOfColumns)
         {
-            List<string> types = new List<string>() { "String", "Double", "Datetime", "Bool"};
+            List<string> types = new List<string>() { "Text", "Numbers", "Date", "True/False"};
             Picker[] pickers = new Picker[amountOfColumns];
             for(int i=0; i<amountOfColumns; i++)
             {
@@ -97,22 +110,22 @@ namespace mauiOperationsOnObjects.ViewModels
                         dynamic value;
                         switch (selectedTypesForColumns[i])
                         {
-                            case "String":
+                            case "Text":
                                 {
                                     value = "";
                                     break;
                                 }
-                            case "Double":
+                            case "Numbers":
                                 {
                                     value = 0.0;
                                     break;
                                 }
-                            case "Bool":
+                            case "True/False":
                                 {
                                     value = false;
                                     break;
                                 }
-                            case "Datetime":
+                            case "Date":
                                 {
                                     value = DateTime.MinValue;
                                     break;
@@ -157,15 +170,20 @@ namespace mauiOperationsOnObjects.ViewModels
                                     break;
                                 }
                         }
-                        HomePage.instance.DisplayAlert("Created table.", $"The table has created. Please, go to Add Window.", "OK");
                         btnCreate.IsEnabled = false;
                     }
                     else
                     {
-                        HomePage.instance.DisplayAlert("Wrong","You have not chosen types for columns.","OK");
                         btnCreate.IsEnabled = true;
                     }
-
+                }
+                if (btnCreate.IsEnabled == false)
+                {
+                    HomePage.instance.DisplayAlert("Created table.", $"The table has created. Please, go to Add Window.", "OK");
+                }
+                else
+                {
+                    HomePage.instance.DisplayAlert("Wrong", "You have not chosen types for columns.", "OK");
                 }
             };
             HomePage.instance.table.Children.Add(btnCreate);

@@ -5,9 +5,11 @@
              xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
              Title="HomePage" Shell.NavBarIsVisible="False" Background="#23272a">
     <StackLayout Background="#23272a" HorizontalOptions="Center" VerticalOptions="Center">
-        <!--<Label Text="{Binding Source={x:Reference sliderAmount}, Path=Value, StringFormat='Columns: {0}'}" HorizontalOptions="Center" VerticalOptions="Center"></Label>-->
-        <input:AdvancedSlider x:Name="sliderAmount" Value="{Binding AmountOfColumns}" MinValue="1" MaxValue="5" StepValue="1" DisplayMinMaxValue="False"
-                              Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="500" ValuePrefix="                               " ValueSuffix="" ThumbColor="#99aab5" Margin="270,0,0,0"></input:AdvancedSlider>
+        <Label Text="{Binding lbSliderValue}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+        <!--<input:AdvancedSlider x:Name="sliderAmount" Value="{Binding AmountOfColumns}" MinValue="1" MaxValue="5" StepValue="1" DisplayMinMaxValue="False"
+                              Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="500" ValuePrefix="                               " ValueSuffix="" ThumbColor="#99aab5" Margin="270,0,0,0"></input:AdvancedSlider>-->
+        <Slider x:Name="sliderAmount" Minimum="1" Maximum="5" Value="{Binding AmountOfColumns}"
+                HorizontalOptions="Center" VerticalOptions="Center" ThumbColor="#99aab5" WidthRequest="200"></Slider>
         <Button x:Name="btnCreateTable" Text="Set amount of columns" Command="{Binding CreateTableCommand}" HorizontalOptions="Center" VerticalOptions="Center" Padding="5"></Button>
         <StackLayout x:Name="tableLayout" HorizontalOptions="Center" Background="#23272a">
 

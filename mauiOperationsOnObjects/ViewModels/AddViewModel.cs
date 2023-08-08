@@ -1,15 +1,9 @@
 ﻿using mauiOperationsOnObjects.Pages;
-using Microsoft.Maui.Controls;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace mauiOperationsOnObjects.ViewModels
@@ -36,6 +30,7 @@ namespace mauiOperationsOnObjects.ViewModels
         {
             instance = this;
             ListOfObjectsAdd = MainViewModel.instance.ListOfObjects;
+
             AddObjectToCollectionView((int)MainViewModel.instance.AmountOfColumns);
         }
         private ObservableCollection<newTable> listOfData = new ObservableCollection<newTable>();
@@ -57,14 +52,12 @@ namespace mauiOperationsOnObjects.ViewModels
                         case 1:
                             {
                                 variableType.Add(MainViewModel.instance.newTable.Variable1.GetType());
-                                index = 1;
                                 break;
                             }
                         case 2:
                             {
                                 variableType.Add(MainViewModel.instance.newTable.Variable1.GetType());
                                 variableType.Add(MainViewModel.instance.newTable.Variable2.GetType());
-                                index = 2;
                                 break;
                             }
                         case 3:
@@ -72,7 +65,6 @@ namespace mauiOperationsOnObjects.ViewModels
                                 variableType.Add(MainViewModel.instance.newTable.Variable1.GetType());
                                 variableType.Add(MainViewModel.instance.newTable.Variable2.GetType());
                                 variableType.Add(MainViewModel.instance.newTable.Variable3.GetType());
-                                index = 3;
                                 break;
                             }
                         case 4:
@@ -81,7 +73,6 @@ namespace mauiOperationsOnObjects.ViewModels
                                 variableType.Add(MainViewModel.instance.newTable.Variable2.GetType());
                                 variableType.Add(MainViewModel.instance.newTable.Variable3.GetType());
                                 variableType.Add(MainViewModel.instance.newTable.Variable4.GetType());
-                                index = 4;
                                 break;
                             }
                         case 5:
@@ -91,18 +82,17 @@ namespace mauiOperationsOnObjects.ViewModels
                                 variableType.Add(MainViewModel.instance.newTable.Variable3.GetType());
                                 variableType.Add(MainViewModel.instance.newTable.Variable4.GetType());
                                 variableType.Add(MainViewModel.instance.newTable.Variable5.GetType());
-                                index = 5;
                                 break;
                             }
                     }
+
+                    index = variableType.Count;
+
                     if (variableType[i] == typeof(double))
                     {
                         Entry newEntry = new Entry();
                         CreateLabel(typeof(double));
-                        Trace.WriteLine($"before method: {index} - {keyWithEmptyValue}");
                         CreateEntries<Entry>(ref index, newEntry, true, ref keyWithEmptyValue);
-                        Trace.WriteLine($"after method: {index} - {keyWithEmptyValue}");
-                        //Trace.WriteLine("yep0");
                         continue;
                     }
                     else if(variableType[i] == typeof(bool))
@@ -110,7 +100,6 @@ namespace mauiOperationsOnObjects.ViewModels
                         Picker newEntry = new Picker();
                         CreateLabel(typeof(bool));
                         CreateEntries<Picker>(ref index, newEntry, true, ref keyWithEmptyValue);
-                        //Trace.WriteLine("yep1");
                         continue;
                     }
                     else if(variableType[i] == typeof(string))
@@ -118,7 +107,6 @@ namespace mauiOperationsOnObjects.ViewModels
                         Entry newEntry = new Entry();
                         CreateLabel(typeof(string));
                         CreateEntries<Entry>(ref index, newEntry, false, ref keyWithEmptyValue);
-                        //Trace.WriteLine("yep2");
                         continue;
                     }
                     else if (variableType[i] == typeof(DateTime))
@@ -126,10 +114,8 @@ namespace mauiOperationsOnObjects.ViewModels
                         DatePicker newEntry = new DatePicker();
                         CreateLabel(typeof(DatePicker));
                         CreateEntries<DatePicker>(ref index, newEntry, false, ref keyWithEmptyValue);
-                        //Trace.WriteLine("yep3");
                         continue;
                     }
-                    Trace.WriteLine($"poza: {keyWithEmptyValue} ");
                 }
                 CreateButton(tempData);
             }
@@ -190,10 +176,8 @@ namespace mauiOperationsOnObjects.ViewModels
                             value = entry.Text;
                             tempData[key-1] = value;
                         };
-                        Trace.WriteLine($"key before:{key} ");
                         key += 1;
                         keyWithEmptyValue=key;
-                        Trace.WriteLine($"and after:{key} - {keyWithEmptyValue} ");
                     }
                     else
                     {
@@ -237,7 +221,6 @@ namespace mauiOperationsOnObjects.ViewModels
                         DateTime dt = entry.Date;
                         value = dt.ToString("yyyy-MM-dd");
                         tempData[key] = value;
-                        Trace.WriteLine($"date: {entry.Date.ToString()} - {dt.ToString("yyyy-MM-dd")}");
                     };
                     keyWithEmptyValue++;
                     newEntry = (T)(object)entry;
@@ -275,9 +258,12 @@ namespace mauiOperationsOnObjects.ViewModels
                     }
                 }
                 listOfData.Add(table);
+
                 ListOfObjectsAdd = listOfData;
+                MainViewModel.instance.ListOfObjects = null;
                 MainViewModel.instance.ListOfObjects = ListOfObjectsAdd;
-                Trace.WriteLine($"{ListOfObjectsAdd[0].Variable1} - {ListOfObjectsAdd[0].Variable2} - {ListOfObjectsAdd[0].Variable3} - {ListOfObjectsAdd[0].Variable4} - {ListOfObjectsAdd[0].Variable5}");
+
+                //Trace.WriteLine($"{ListOfObjectsAdd[0].Variable1} - {ListOfObjectsAdd[0].Variable2} - {ListOfObjectsAdd[0].Variable3} - {ListOfObjectsAdd[0].Variable4} - {ListOfObjectsAdd[0].Variable5}");
             };
             AddPage.instance.entries.Children.Add(btnAdd);
         }

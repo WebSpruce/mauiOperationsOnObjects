@@ -5,6 +5,7 @@ using Microsoft.Maui.Controls.Hosting;
 using Microsoft.Maui.Controls.Xaml;
 using Microsoft.Extensions.Logging;
 using InputKit.Handlers;
+using CommunityToolkit.Maui;
 
 namespace mauiOperationsOnObjects;
 
@@ -15,6 +16,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureMauiHandlers(handlers =>
 			{
 				handlers.AddInputKitHandlers();
