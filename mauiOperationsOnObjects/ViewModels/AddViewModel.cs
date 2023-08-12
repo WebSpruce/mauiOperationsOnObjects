@@ -1,7 +1,9 @@
 ﻿using mauiOperationsOnObjects.Pages;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
@@ -44,7 +46,7 @@ namespace mauiOperationsOnObjects.ViewModels
         {
             try
             {
-                for (int i=0; i<count; i++) 
+                for (int i = 0; i < count; i++)
                 {
                     List<Type> variableType = new List<Type>();
                     switch (count)
@@ -95,14 +97,14 @@ namespace mauiOperationsOnObjects.ViewModels
                         CreateEntries<Entry>(ref index, newEntry, true, ref keyWithEmptyValue);
                         continue;
                     }
-                    else if(variableType[i] == typeof(bool))
+                    else if (variableType[i] == typeof(bool))
                     {
                         Picker newEntry = new Picker();
                         CreateLabel(typeof(bool));
                         CreateEntries<Picker>(ref index, newEntry, true, ref keyWithEmptyValue);
                         continue;
                     }
-                    else if(variableType[i] == typeof(string))
+                    else if (variableType[i] == typeof(string))
                     {
                         Entry newEntry = new Entry();
                         CreateLabel(typeof(string));
@@ -125,7 +127,7 @@ namespace mauiOperationsOnObjects.ViewModels
             }
 
         }
-        
+
         private void CreateLabel(Type typeOfEntry)
         {
             Label lb = new Label();
@@ -135,7 +137,7 @@ namespace mauiOperationsOnObjects.ViewModels
             {
                 lb.Text = $"Add value to table (numbers).";
             }
-            else if(typeOfEntry == typeof(bool))
+            else if (typeOfEntry == typeof(bool))
             {
                 lb.Text = $"Set value to table (bool).";
             }
@@ -174,10 +176,10 @@ namespace mauiOperationsOnObjects.ViewModels
                             string numericText = regex.Replace(e.NewTextValue, "");
                             ((Entry)sender).Text = numericText;
                             value = entry.Text;
-                            tempData[key-1] = value;
+                            tempData[key - 1] = value;
                         };
                         key += 1;
-                        keyWithEmptyValue=key;
+                        keyWithEmptyValue = key;
                     }
                     else
                     {
@@ -219,7 +221,7 @@ namespace mauiOperationsOnObjects.ViewModels
                     entry.DateSelected += (sender, e) =>
                     {
                         DateTime dt = entry.Date;
-                        value = dt.ToString("yyyy-MM-dd");
+                        value = dt.ToString("yyyy/MM/dd");
                         tempData[key] = value;
                     };
                     keyWithEmptyValue++;
@@ -228,16 +230,16 @@ namespace mauiOperationsOnObjects.ViewModels
                 }
                 index -= 1;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Trace.WriteLine($"error create entries: {ex}");
             }
-            
+
 
         }
         private void CreateButton(Dictionary<int, string> types)
         {
-            
+
             Button btnAdd = new Button();
             btnAdd.Text = "Add value to table";
             btnAdd.HorizontalOptions = LayoutOptions.Center;
@@ -245,25 +247,30 @@ namespace mauiOperationsOnObjects.ViewModels
             btnAdd.Padding = new Thickness(5);
             btnAdd.Clicked += (sender, e) =>
             {
-                newTable table = new newTable();
-                for (int i = 1; i <= types.Count; i++)
+                try
                 {
-                    if (types[i] != null && types[i] != "")
+                    newTable table = new newTable();
+                    for (int i = 1; i <= types.Count; i++)
                     {
-                        var propertyInfo = table.GetType().GetProperty("Variable" + (i));
-                        if (propertyInfo != null)
+                        if (types[i] != null && types[i] != "")
                         {
-                            propertyInfo.SetValue(table, types[i]);
+                            var propertyInfo = table.GetType().GetProperty("Variable" + (i));
+                            if (propertyInfo != null)
+                            {
+                                propertyInfo.SetValue(table, types[i]);
+                            }
                         }
                     }
+                    listOfData.Add(table);
+
+                    ListOfObjectsAdd = listOfData;
+                    MainViewModel.instance.ListOfObjects = null;
+                    MainViewModel.instance.ListOfObjects = ListOfObjectsAdd;
                 }
-                listOfData.Add(table);
-
-                ListOfObjectsAdd = listOfData;
-                MainViewModel.instance.ListOfObjects = null;
-                MainViewModel.instance.ListOfObjects = ListOfObjectsAdd;
-
-                //Trace.WriteLine($"{ListOfObjectsAdd[0].Variable1} - {ListOfObjectsAdd[0].Variable2} - {ListOfObjectsAdd[0].Variable3} - {ListOfObjectsAdd[0].Variable4} - {ListOfObjectsAdd[0].Variable5}");
+                catch(Exception ex)
+                {
+                    Trace.WriteLine($"AddViewModel CreateButton error: {ex}");
+                }
             };
             AddPage.instance.entries.Children.Add(btnAdd);
         }

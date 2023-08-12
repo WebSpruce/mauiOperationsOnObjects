@@ -10,7 +10,7 @@
         <StackLayout HeightRequest="500">
             <Frame Background="#23272a" CornerRadius="15" BorderColor="#99aab5" Margin="30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                 <StackLayout>
-                    <CollectionView ItemsSource="{Binding ListOfObjectsEdit}" SelectionMode="Single" SelectedItem="{Binding SelectedObject}"
+                    <CollectionView x:Name="cview" ItemsSource="{Binding ListOfObjectsEdit}" SelectionMode="Single" SelectedItem="{Binding SelectedObject}" SelectionChangedCommand="{Binding ItemTappedCommand}"
                                     Background="#23272a" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>

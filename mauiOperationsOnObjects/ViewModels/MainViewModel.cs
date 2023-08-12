@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using mauiOperationsOnObjects.Pages;
 using System.Dynamic;
+using System.Reflection;
 
 namespace mauiOperationsOnObjects.ViewModels
 {

@@ -1,14 +1,10 @@
 ﻿using CommunityToolkit.Maui.Views;
 using mauiOperationsOnObjects.Pages;
 using mauiOperationsOnObjects.Popups;
-using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace mauiOperationsOnObjects.ViewModels
 {
@@ -38,11 +34,15 @@ namespace mauiOperationsOnObjects.ViewModels
                     selectedObject = value;
                     OnPropertyChanged("SelectedObject");
                     EditPage.instance.ShowPopup(new SelectedItemPopup(SelectedObject));
+                    SelectedObject = null;
+                    EditPage.instance.collectionView.SelectedItem = null;
                 }
             }
         }
+        public static EditViewModel instance;
         public EditViewModel()
         {
+            instance = this;
             ListOfObjectsEdit = MainViewModel.instance.ListOfObjects;
         }
 

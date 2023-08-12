@@ -7,7 +7,7 @@
         <StackLayout x:Name="entryLayout" HorizontalOptions="Center" VerticalOptions="Start">
 
         </StackLayout>
-        <StackLayout HeightRequest="500">
+        <StackLayout>
             <Frame Background="#23272a" CornerRadius="15" BorderColor="#99aab5" Margin="30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                 <StackLayout>
                     <CollectionView ItemsSource="{Binding ListOfObjectsAdd}" SelectionMode="Single" 
