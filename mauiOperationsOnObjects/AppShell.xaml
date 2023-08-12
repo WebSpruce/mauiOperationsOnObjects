@@ -17,14 +17,8 @@
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Home" ContentTemplate="{DataTemplate pages:HomePage}" Route="HomePage" />
         <ShellContent Title="Add" ContentTemplate="{DataTemplate pages:AddPage}" Route="AddPage" />
-        <ShellContent Title="Edit" ContentTemplate="{DataTemplate pages:EditPage}" Route="EditPage" />
-        <ShellContent Title="Remove" ContentTemplate="{DataTemplate pages:RemovePage}" Route="RemovePage" />
+        <ShellContent Title="Edit" ContentTemplate="{DataTemplate pages:EditPage}" Route="EditPage"/>
+        <ShellContent Title="Remove" ContentTemplate="{DataTemplate pages:RemovePage}" Route="RemovePage"/>
     </FlyoutItem>
-
-    <Shell.FlyoutFooter>
-        <StackLayout Background="#23272a">
-            <Button Text="Exit" HorizontalOptions="Center" VerticalOptions="Center" Background="#23272a" WidthRequest="100" Margin="5"></Button>
-        </StackLayout>
-    </Shell.FlyoutFooter>
 
 </Shell>

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace mauiOperationsOnObjects.ViewModels
 {
@@ -33,19 +34,28 @@ namespace mauiOperationsOnObjects.ViewModels
                 {
                     selectedObject = value;
                     OnPropertyChanged("SelectedObject");
-                    EditPage.instance.ShowPopup(new SelectedItemPopup(SelectedObject));
-                    SelectedObject = null;
-                    EditPage.instance.collectionView.SelectedItem = null;
                 }
             }
         }
+        public ICommand ItemTappedCommand { get; private set; }
+
         public static EditViewModel instance;
         public EditViewModel()
         {
             instance = this;
             ListOfObjectsEdit = MainViewModel.instance.ListOfObjects;
-        }
 
+            ItemTappedCommand = new Command(() => EditItem(SelectedObject));
+        }
+        private void EditItem(newTable selectedObject)
+        {
+            if (selectedObject != null)
+            {
+                EditPage.instance.ShowPopup(new SelectedItemPopup(SelectedObject));
+                EditPage.instance.collectionView.SelectedItem = null;
+            }
+
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

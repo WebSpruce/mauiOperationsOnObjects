@@ -69,6 +69,7 @@ namespace mauiOperationsOnObjects.ViewModels
         public newTable newTable = new newTable();
         public void CreateCollectionView(int amountOfColumns)
         {
+            HomePage.instance.slider.IsEnabled = false;
             List<string> types = new List<string>() { "Text", "Numbers", "Date", "True/False"};
             Picker[] pickers = new Picker[amountOfColumns];
             for(int i=0; i<amountOfColumns; i++)

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Reflection;
+using mauiOperationsOnObjects.Pages;
 
 namespace mauiOperationsOnObjects.Popups;
 
@@ -190,7 +191,7 @@ public partial class SelectedItemPopup : Popup
                         MainViewModel.instance.ListOfObjects[i] = newRow;
                     }
                 }
-                EditViewModel.instance.SelectedObject = null;
+                EditPage.instance.collectionView.SelectedItem = null;
                 Close();
             }
             catch(Exception ex)
