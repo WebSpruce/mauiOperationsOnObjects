@@ -26,7 +26,6 @@ namespace mauiOperationsOnObjects.ViewModels
             }
         }
 
-        public ICommand AddPageLoadedCommand { get; private set; }
         public AddViewModel instance;
         public AddViewModel()
         {
@@ -135,19 +134,19 @@ namespace mauiOperationsOnObjects.ViewModels
             lb.FontSize = 12;
             if (typeOfEntry == typeof(double))
             {
-                lb.Text = $"Add value to table (numbers).";
+                lb.Text = $"Add value to table (Numbers).";
             }
             else if (typeOfEntry == typeof(bool))
             {
-                lb.Text = $"Set value to table (bool).";
+                lb.Text = $"Set value to table (Bool).";
             }
             else if (typeOfEntry == typeof(string))
             {
-                lb.Text = $"Set value to table (string).";
+                lb.Text = $"Set value to table (String).";
             }
             else if (typeOfEntry == typeof(DatePicker))
             {
-                lb.Text = $"Set value to table (DatePicker).";
+                lb.Text = $"Set value to table (Date).";
             }
             AddPage.instance.entries.Children.Add(lb);
         }
@@ -266,6 +265,7 @@ namespace mauiOperationsOnObjects.ViewModels
                     ListOfObjectsAdd = listOfData;
                     MainViewModel.instance.ListOfObjects = null;
                     MainViewModel.instance.ListOfObjects = ListOfObjectsAdd;
+                    AddPage.instance.DisplayAlert("Well done!", "Your item has been added.", "OK");
                 }
                 catch(Exception ex)
                 {

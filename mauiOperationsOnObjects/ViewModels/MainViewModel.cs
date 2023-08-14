@@ -83,7 +83,7 @@ namespace mauiOperationsOnObjects.ViewModels
 
                 pickers[i] = new Picker();
                 pickers[i].ClassId = $"Picker{i+1}";
-                pickers[i].WidthRequest = 100;
+                pickers[i].WidthRequest = 200;
                 pickers[i].ItemsSource = types;
                 pickers[i].SelectedIndexChanged += (sender, args) =>
                 {
