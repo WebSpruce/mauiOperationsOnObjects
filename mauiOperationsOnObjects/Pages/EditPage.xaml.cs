@@ -1,3 +1,5 @@
+using CommunityToolkit.Maui.Views;
+using mauiOperationsOnObjects.Popups;
 using mauiOperationsOnObjects.ViewModels;
 
 namespace mauiOperationsOnObjects.Pages;

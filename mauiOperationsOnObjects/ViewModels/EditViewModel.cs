@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Maui.Views;
 using mauiOperationsOnObjects.Pages;
 using mauiOperationsOnObjects.Popups;
-using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -38,7 +37,7 @@ namespace mauiOperationsOnObjects.ViewModels
             }
         }
         public ICommand ItemTappedCommand { get; private set; }
-
+        public ICommand ItemSwipedCommand { get; private set; }
         public static EditViewModel instance;
         public EditViewModel()
         {
@@ -46,6 +45,8 @@ namespace mauiOperationsOnObjects.ViewModels
             ListOfObjectsEdit = MainViewModel.instance.ListOfObjects;
 
             ItemTappedCommand = new Command(() => EditItem(SelectedObject));
+            ItemSwipedCommand = new Command<newTable>(EditSwipedItem);
+
         }
         private void EditItem(newTable selectedObject)
         {
@@ -54,7 +55,14 @@ namespace mauiOperationsOnObjects.ViewModels
                 EditPage.instance.ShowPopup(new SelectedItemPopup(SelectedObject));
                 EditPage.instance.collectionView.SelectedItem = null;
             }
-
+        } 
+        private void EditSwipedItem(newTable swipedObject)
+        {
+            if (swipedObject != null)
+            {
+                EditPage.instance.ShowPopup(new SelectedItemPopup(swipedObject));
+                EditPage.instance.collectionView.SelectedItem = null;
+            }
         }
 
 

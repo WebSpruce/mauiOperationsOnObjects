@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using mauiOperationsOnObjects.Pages;
-using System.Dynamic;
-using System.Reflection;
 
 namespace mauiOperationsOnObjects.ViewModels
 {
@@ -56,7 +49,7 @@ namespace mauiOperationsOnObjects.ViewModels
         }
 
         public ICommand CreateTableCommand { get; private set; }
-        
+
 
         private List<string> selectedTypesForColumns = new List<string>();
 
@@ -64,25 +57,26 @@ namespace mauiOperationsOnObjects.ViewModels
         public MainViewModel()
         {
             instance = this;
+
             CreateTableCommand = new Command(() => CreateCollectionView((int)AmountOfColumns));
         }
         public newTable newTable = new newTable();
         public void CreateCollectionView(int amountOfColumns)
         {
             HomePage.instance.slider.IsEnabled = false;
-            List<string> types = new List<string>() { "Text", "Numbers", "Date", "True/False"};
+            List<string> types = new List<string>() { "Text", "Numbers", "Date", "True/False" };
             Picker[] pickers = new Picker[amountOfColumns];
-            for(int i=0; i<amountOfColumns; i++)
+            for (int i = 0; i < amountOfColumns; i++)
             {
                 int index = i;
                 Label lb = new Label();
-                lb.Text = $"Set type of value for {i+1}. column";
+                lb.Text = $"Set type of value for {i + 1}. column";
                 lb.HorizontalTextAlignment = TextAlignment.Center;
                 lb.FontSize = 12;
                 HomePage.instance.table.Children.Add(lb);
 
                 pickers[i] = new Picker();
-                pickers[i].ClassId = $"Picker{i+1}";
+                pickers[i].ClassId = $"Picker{i + 1}";
                 pickers[i].WidthRequest = 200;
                 pickers[i].ItemsSource = types;
                 pickers[i].SelectedIndexChanged += (sender, args) =>
@@ -103,12 +97,12 @@ namespace mauiOperationsOnObjects.ViewModels
             btnCreate.Padding = new Thickness(5);
             btnCreate.Clicked += (sender, e) =>
             {
-                
+
                 for (int i = 0; i < amountOfColumns; i++)
                 {
                     if (pickers[i].SelectedItem != null)
                     {
-                        Trace.WriteLine($"{i}. {selectedTypesForColumns[i]}");
+                        Trace.Write($"{i}. {selectedTypesForColumns[i]}, ");
                         dynamic value;
                         switch (selectedTypesForColumns[i])
                         {
@@ -179,6 +173,7 @@ namespace mauiOperationsOnObjects.ViewModels
                         btnCreate.IsEnabled = true;
                     }
                 }
+                Trace.WriteLine("\n");
                 if (btnCreate.IsEnabled == false)
                 {
                     HomePage.instance.DisplayAlert("Created table.", $"The table has created. Please, go to Add Window.", "OK");
@@ -190,7 +185,8 @@ namespace mauiOperationsOnObjects.ViewModels
             };
             HomePage.instance.table.Children.Add(btnCreate);
         }
-        
+
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -201,6 +197,7 @@ namespace mauiOperationsOnObjects.ViewModels
     }
     public class newTable
     {
+        public int Id { get; set; }
         public dynamic Variable1 { get; set; }
         public dynamic Variable2 { get; set; }
         public dynamic Variable3 { get; set; }

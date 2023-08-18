@@ -40,6 +40,7 @@ namespace mauiOperationsOnObjects.ViewModels
             }
         }
         public ICommand ItemTappedCommand { get; private set; }
+        public ICommand DropTableCommand { get; private set; }
 
         public static RemoveViewModel instance;
         public RemoveViewModel()
@@ -48,6 +49,7 @@ namespace mauiOperationsOnObjects.ViewModels
             ListOfObjectsRemove = MainViewModel.instance.ListOfObjects;
 
             ItemTappedCommand = new Command(() => RemoveItemQuestion(SelectedObject));
+            DropTableCommand = new Command(() => DropTable());
         }
         private async void RemoveItemQuestion(newTable selectedObject)
         {
@@ -66,7 +68,18 @@ namespace mauiOperationsOnObjects.ViewModels
             }
             
         }
-
+        private async void DropTable()
+        {
+            bool answer = await RemovePage.instance.DisplayAlert("Are you sure?", "Would you like to remove all items from the list?", "Yes", "No");
+            if (answer)
+            {
+                if (listOfObjectsRemove != null)
+                {
+                    ListOfObjectsRemove.Clear();
+                    MainViewModel.instance.ListOfObjects = ListOfObjectsRemove;
+                }
+            }
+        }
 
 
 

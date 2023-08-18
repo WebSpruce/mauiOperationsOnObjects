@@ -1,12 +1,9 @@
 ﻿using mauiOperationsOnObjects.Pages;
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
-using System.Windows.Input;
 
 namespace mauiOperationsOnObjects.ViewModels
 {
@@ -244,7 +241,7 @@ namespace mauiOperationsOnObjects.ViewModels
             btnAdd.HorizontalOptions = LayoutOptions.Center;
             btnAdd.VerticalOptions = LayoutOptions.Center;
             btnAdd.Padding = new Thickness(5);
-            btnAdd.Clicked += (sender, e) =>
+            btnAdd.Clicked += async (sender, e) =>
             {
                 try
                 {
@@ -260,12 +257,21 @@ namespace mauiOperationsOnObjects.ViewModels
                             }
                         }
                     }
+                    if (ListOfObjectsAdd == null)
+                    {
+                        table.Id = 1;
+                    }
+                    else 
+                    {
+                        table.Id = ListOfObjectsAdd[ListOfObjectsAdd.Count - 1].Id + 1;
+                    }
+                    
                     listOfData.Add(table);
 
                     ListOfObjectsAdd = listOfData;
                     MainViewModel.instance.ListOfObjects = null;
                     MainViewModel.instance.ListOfObjects = ListOfObjectsAdd;
-                    AddPage.instance.DisplayAlert("Well done!", "Your item has been added.", "OK");
+                    await AddPage.instance.DisplayAlert("Well done!", "Your item has been added.", "OK");
                 }
                 catch(Exception ex)
                 {
@@ -274,7 +280,6 @@ namespace mauiOperationsOnObjects.ViewModels
             };
             AddPage.instance.entries.Children.Add(btnAdd);
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string name = "")
