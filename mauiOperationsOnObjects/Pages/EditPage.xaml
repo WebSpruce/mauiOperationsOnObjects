@@ -11,23 +11,15 @@
                                     Background="#23272a" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Always" Padding="5">
-                                    <Grid>
-                                        <Frame Background="#23272a">
-                                            <Frame.GestureRecognizers>
-                                                <SwipeGestureRecognizer Direction="Right" Command="{Binding ItemSwipedCommand}"></SwipeGestureRecognizer>
-                                            </Frame.GestureRecognizers>
-                                            <Grid Background="#23272a" ColumnDefinitions="15,auto,auto,auto,auto,auto">
-                                                <Label Grid.Column="0" Text="{Binding Id}" TextColor="{StaticResource DcLight2}" FontSize="10"></Label>
-                                                <Label Grid.Column="1" Text="{Binding Variable1}" FontSize="12" LineBreakMode="TailTruncation"></Label>
-                                                <Label Grid.Column="2" Text="{Binding Variable2}" FontSize="12" Padding="5,0" LineBreakMode="TailTruncation"></Label>
-                                                <Label Grid.Column="3" Text="{Binding Variable3}" FontSize="12" Padding="5,0" LineBreakMode="TailTruncation"></Label>
-                                                <Label Grid.Column="4" Text="{Binding Variable4}" FontSize="12" Padding="5,0" LineBreakMode="TailTruncation"></Label>
-                                                <Label Grid.Column="5" Text="{Binding Variable5}" FontSize="12" Padding="5,0" LineBreakMode="TailTruncation"></Label>
-                                            </Grid>
-                                        </Frame>
-                                    </Grid>
-                                </ScrollView>
+                                <Grid Background="#23272a" ColumnDefinitions="15,auto,auto,auto,auto,auto" RowDefinitions="*,3" Padding="10" HorizontalOptions="FillAndExpand">
+                                    <Label Grid.Column="0" Grid.Row="0" Text="{Binding Id}" TextColor="{StaticResource DcLight2}" FontSize="10"></Label>
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding Variable1}" FontSize="12" LineBreakMode="TailTruncation"></Label>
+                                    <Label Grid.Column="2" Grid.Row="0" Text="{Binding Variable2}" FontSize="12" Padding="5,0" LineBreakMode="TailTruncation"></Label>
+                                    <Label Grid.Column="3" Grid.Row="0" Text="{Binding Variable3}" FontSize="12" Padding="5,0" LineBreakMode="TailTruncation"></Label>
+                                    <Label Grid.Column="4" Grid.Row="0" Text="{Binding Variable4}" FontSize="12" Padding="5,0" LineBreakMode="TailTruncation"></Label>
+                                    <Label Grid.Column="5" Grid.Row="0" Text="{Binding Variable5}" FontSize="12" Padding="5,0" LineBreakMode="TailTruncation"></Label>
+                                    <Line Grid.Row="1" Stroke="#99aab5" X2="{Binding Width, Source={RelativeSource Self}}" VerticalOptions="End" HorizontalOptions="CenterAndExpand" StrokeThickness="3"></Line>
+                                </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>

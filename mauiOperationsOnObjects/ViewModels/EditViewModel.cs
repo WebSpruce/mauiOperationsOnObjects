@@ -3,12 +3,13 @@ using mauiOperationsOnObjects.Pages;
 using mauiOperationsOnObjects.Popups;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace mauiOperationsOnObjects.ViewModels
 {
-    public class EditViewModel
+    public class EditViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<newTable> listOfObjectsEdit;
         public ObservableCollection<newTable> ListOfObjectsEdit
@@ -45,11 +46,11 @@ namespace mauiOperationsOnObjects.ViewModels
             ListOfObjectsEdit = MainViewModel.instance.ListOfObjects;
 
             ItemTappedCommand = new Command(() => EditItem(SelectedObject));
-            ItemSwipedCommand = new Command<newTable>(EditSwipedItem);
 
         }
         private void EditItem(newTable selectedObject)
         {
+            Trace.WriteLine($"clicked");
             if (selectedObject != null)
             {
                 EditPage.instance.ShowPopup(new SelectedItemPopup(SelectedObject));

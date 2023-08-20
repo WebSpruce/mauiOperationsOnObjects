@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace mauiOperationsOnObjects.ViewModels
 {
-    public class RemoveViewModel
+    public class RemoveViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<newTable> listOfObjectsRemove;
         public ObservableCollection<newTable> ListOfObjectsRemove
