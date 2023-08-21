@@ -11,3 +11,9 @@
 - You can edit and remove items from the list.
 - Modern, minimalistic design.
 - It works on Windows and Android.
+
+## Screenshots:
+<img src="https://github.com/WebSpruce/mauiOperationsOnObjects/assets/117351406/a875daed-3ece-4530-867f-7dca24fe586b" width=800>
+<img src="https://github.com/WebSpruce/mauiOperationsOnObjects/assets/117351406/513cd5ab-40ef-49fb-bf2e-29a56e2d0320" width=800>
+<img src="https://github.com/WebSpruce/mauiOperationsOnObjects/assets/117351406/8ca16570-c9de-4a53-8fe3-8e1e9c4c5ee2" width=400>
+
