@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using mauiOperationsOnObjects.Pages;
+using mauiOperationsOnObjects.Data;
 
 namespace mauiOperationsOnObjects.ViewModels
 {
@@ -195,13 +196,5 @@ namespace mauiOperationsOnObjects.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
-    public class newTable
-    {
-        public int Id { get; set; }
-        public dynamic Variable1 { get; set; }
-        public dynamic Variable2 { get; set; }
-        public dynamic Variable3 { get; set; }
-        public dynamic Variable4 { get; set; }
-        public dynamic Variable5 { get; set; }
-    }
+    
 }
